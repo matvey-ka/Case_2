@@ -91,8 +91,11 @@ def print_report(report):
 
 
 if __name__ == '__main__':
-    with open('data_leak_sample.txt', 'r', encoding='utf-8') as f:
-        main_text = f.read()
+    try:
+        with open('data_leak_sampl.txt', 'r', encoding='utf-8') as f:
+            main_text = f.read()
+    except FileNotFoundError:
+        raise SystemExit('File not found')
     report = generate_comprehensive_report(main_text)
     print_report(report)
     save_artifacts(report)
