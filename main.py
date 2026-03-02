@@ -43,7 +43,7 @@ def find_and_validate_credit_cards(text):
     return result
 
 
-def save_financial_data(extracted_data, filename='card_artifacts.txt'):
+def save_financial_data(extracted_data, filename='result.txt'):
     '''
     Function saving financial data to file with formatted output.
     :param extracted_data: dictionary containing financial data with valid and invalid card lists
@@ -137,17 +137,14 @@ def find_secrets(text):
     return {'all': no_repeats, 'organized': secrets}
 
 
-def save_secrets_data(extracted_data, filename='secrets_artifacts.txt'):
+def save_secrets_data(extracted_data, filename='result.txt'):
     """
     Функция сохранения секретных данных в файл
     :param extracted_data: словарь со всеми извлеченными данными
     :param filename: имя выходного файла
     :return: None
     """
-    with open(filename, 'w', encoding='utf-8') as f:
-        f.write('=' * 50 + '\n')
-        f.write('🛡️ DATA SHIELD OPERATION REPORT 🛡️\n')
-        f.write('=' * 50 + '\n')
+    with open(filename, 'a', encoding='utf-8') as f:
         f.write('#' * 50 + '\n')
         f.write('🔑🔐🎫 SECRETS DATA 🔑🔐🎫\n')
         f.write('#' * 50 + '\n')
