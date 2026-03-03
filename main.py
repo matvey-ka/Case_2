@@ -50,6 +50,7 @@ def save_financial_data(extracted_data, filename='result.txt'):
     :param filename: string specifying output file name
     :return: None
     '''
+    '''
     with open(filename, 'w', encoding='utf-8') as f:
         f.write('=' * 50 + '\n')
         f.write('🛡️ DATA SHIELD OPERATION REPORT 🛡️\n')
@@ -67,7 +68,12 @@ def save_financial_data(extracted_data, filename='result.txt'):
         f.write('-' * 50 + '\n')
         for card in extracted_data["financial_data"]["invalid"]:
             f.write(f'{card}\n')
-
+    '''
+    with open(filename, 'w', encoding='utf-8') as f:
+        for card in extracted_data["financial_data"]["valid"]:
+            f.write(f'{card}\n')
+        for card in extracted_data["financial_data"]["invalid"]:
+            f.write(f'{card}\n')
 
 def print_financial_data(extracted_data):
     '''
@@ -144,6 +150,7 @@ def save_secrets_data(extracted_data, filename='result.txt'):
     :param filename: имя выходного файла
     :return: None
     """
+    '''
     with open(filename, 'a', encoding='utf-8') as f:
         f.write('#' * 50 + '\n')
         f.write('🔑🔐🎫 SECRETS DATA 🔑🔐🎫\n')
@@ -164,6 +171,13 @@ def save_secrets_data(extracted_data, filename='result.txt'):
             f.write('-' * 50 + '\n')
             for pwd in secrets_data['passwords']:
                 f.write(f'{pwd}\n')
+    '''
+    with open(filename, 'a', encoding='utf-8') as f:
+        secrets_data = extracted_data['secrets_data']['organized']
+        for key in secrets_data['API-keys']:
+            f.write(f'{key}\n')
+        for pwd in secrets_data['passwords']:
+            f.write(f'{pwd}\n')
 
 
 def print_secrets_data(extracted_data):
