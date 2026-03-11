@@ -50,7 +50,6 @@ def save_financial_data(extracted_data, filename='our_result.txt'):
     :param filename: string specifying output file name
     :return: None
     '''
-    '''
     with open(filename, 'w', encoding='utf-8') as f:
         f.write('=' * 50 + '\n')
         f.write('🛡️ DATA SHIELD OPERATION REPORT 🛡️\n')
@@ -68,7 +67,7 @@ def save_financial_data(extracted_data, filename='our_result.txt'):
         f.write('-' * 50 + '\n')
         for card in extracted_data["financial_data"]["invalid"]:
             f.write(f'{card}\n')
-    '''
+
     with open(filename, 'w', encoding='utf-8') as f:
         for card in extracted_data["financial_data"]["valid"]:
             f.write(f'{card}\n')
@@ -108,9 +107,9 @@ def print_financial_data(extracted_data):
 
 def find_secrets(text):
     """
-    Ищет API-ключи, пароли и токены в тексте
-    :param text: исходный текст для анализа
-    :return: словарь с найденными секретами
+    Searches for API keys, passwords in text
+    :param text: source text to analyze
+    :return: dictionary with found secrets
     """
     all_secrets = []
     secrets = {'API-keys': [], 'passwords': []}
@@ -145,12 +144,11 @@ def find_secrets(text):
 
 def save_secrets_data(extracted_data, filename='our_result.txt'):
     """
-    Функция сохранения секретных данных в файл
-    :param extracted_data: словарь со всеми извлеченными данными
-    :param filename: имя выходного файла
+    Function for saving secret data to a file
+    :param extracted_data: dictionary with all extracted data
+    :param filename: output file name
     :return: None
     """
-    '''
     with open(filename, 'a', encoding='utf-8') as f:
         f.write('#' * 50 + '\n')
         f.write('🔑🔐🎫 SECRETS DATA 🔑🔐🎫\n')
@@ -171,7 +169,7 @@ def save_secrets_data(extracted_data, filename='our_result.txt'):
             f.write('-' * 50 + '\n')
             for pwd in secrets_data['passwords']:
                 f.write(f'{pwd}\n')
-    '''
+
     with open(filename, 'a', encoding='utf-8') as f:
         secrets_data = extracted_data['secrets_data']['organized']
         for key in secrets_data['API-keys']:
@@ -182,8 +180,8 @@ def save_secrets_data(extracted_data, filename='our_result.txt'):
 
 def print_secrets_data(extracted_data):
     """
-    Функция вывода секретных данных в консоль
-    :param extracted_data: словарь со всеми извлеченными данными
+    Function for displaying secret data in the console
+    :param extracted_data: dictionary with all extracted data
     :return: None
     """
     print('=' * 50)
