@@ -50,6 +50,7 @@ def save_financial_data(extracted_data, filename='our_result.txt'):
     :param filename: string specifying output file name
     :return: None
     '''
+    '''
     with open(filename, 'w', encoding='utf-8') as f:
         f.write('=' * 50 + '\n')
         f.write('🛡️ DATA SHIELD OPERATION REPORT 🛡️\n')
@@ -58,21 +59,22 @@ def save_financial_data(extracted_data, filename='our_result.txt'):
         f.write('💵💸🤑💰💲 FINANCIAL DATA 💵💸🤑💰💲\n')
         f.write('#' * 50 + '\n')
         f.write('-' * 50 + '\n')
-        f.write(f'✅ VALID UNIQUE CARDS ✅ ({len(extracted_data["financial_data"]["valid"])} pieces):\n')
+        f.write(f'✅ VALID UNIQUE CARDS ✅ ({len(extracted_data['financial_data']['valid'])} pieces):\n')
         f.write('-' * 50 + '\n')
-        for card in extracted_data["financial_data"]["valid"]:
+        for card in extracted_data['financial_data']['valid']:
             f.write(f'{card}\n')
         f.write('-' * 50 + '\n')
-        f.write(f'❌ INVALID UNIQUE CARDS ❌ ({len(extracted_data["financial_data"]["invalid"])} pieces):\n')
+        f.write(f'❌ INVALID UNIQUE CARDS ❌ ({len(extracted_data['financial_data']['invalid'])} pieces):\n')
         f.write('-' * 50 + '\n')
-        for card in extracted_data["financial_data"]["invalid"]:
+        for card in extracted_data['financial_data']['invalid']:
+            f.write(f'{card}\n')
+    '''
+    with open(filename, 'w', encoding='utf-8') as f:
+        for card in extracted_data['financial_data']['valid']:
+            f.write(f'{card}\n')
+        for card in extracted_data['financial_data']['invalid']:
             f.write(f'{card}\n')
 
-    with open(filename, 'w', encoding='utf-8') as f:
-        for card in extracted_data["financial_data"]["valid"]:
-            f.write(f'{card}\n')
-        for card in extracted_data["financial_data"]["invalid"]:
-            f.write(f'{card}\n')
 
 def print_financial_data(extracted_data):
     '''
@@ -89,12 +91,12 @@ def print_financial_data(extracted_data):
         print(f'{title}')
         print('#' * 50)
         print('-' * 50)
-        print(f'✅ VALID CARDS ✅ ({len(card_data["valid"])} pieces):')
+        print(f'✅ VALID CARDS ✅ ({len(card_data['valid'])} pieces):')
         print('-' * 50)
         for card in card_data['valid']:
             print(f'{card}')
         print('-' * 50)
-        print(f'❌ INVALID CARDS ❌ ({len(card_data["invalid"])} pieces):')
+        print(f'❌ INVALID CARDS ❌ ({len(card_data['invalid'])} pieces):')
         print('-' * 50)
         for card in card_data['invalid']:
             print(f'{card}')
@@ -106,11 +108,11 @@ def print_financial_data(extracted_data):
 ##### BEGINNING OF SECRETS HUNTER'S CODE #####
 
 def find_secrets(text):
-    """
+    '''
     Searches for API keys, passwords in text
     :param text: source text to analyze
     :return: dictionary with found secrets
-    """
+    '''
     all_secrets = []
     secrets = {'API-keys': [], 'passwords': []}
 
@@ -143,12 +145,12 @@ def find_secrets(text):
 
 
 def save_secrets_data(extracted_data, filename='our_result.txt'):
-    """
+    '''
     Function for saving secret data to a file
     :param extracted_data: dictionary with all extracted data
     :param filename: output file name
     :return: None
-    """
+    '''
     with open(filename, 'a', encoding='utf-8') as f:
         f.write('#' * 50 + '\n')
         f.write('🔑🔐🎫 SECRETS DATA 🔑🔐🎫\n')
@@ -158,14 +160,14 @@ def save_secrets_data(extracted_data, filename='our_result.txt'):
 
         if secrets_data['API-keys']:
             f.write('-' * 50 + '\n')
-            f.write(f'🔑 API KEYS ({len(secrets_data["API-keys"])} pieces):\n')
+            f.write(f'🔑 API KEYS ({len(secrets_data['API-keys'])} pieces):\n')
             f.write('-' * 50 + '\n')
             for key in secrets_data['API-keys']:
                 f.write(f'{key}\n')
 
         if secrets_data['passwords']:
             f.write('-' * 50 + '\n')
-            f.write(f'🔐 PASSWORDS ({len(secrets_data["passwords"])} pieces):\n')
+            f.write(f'🔐 PASSWORDS ({len(secrets_data['passwords'])} pieces):\n')
             f.write('-' * 50 + '\n')
             for pwd in secrets_data['passwords']:
                 f.write(f'{pwd}\n')
@@ -179,11 +181,11 @@ def save_secrets_data(extracted_data, filename='our_result.txt'):
 
 
 def print_secrets_data(extracted_data):
-    """
+    '''
     Function for displaying secret data in the console
     :param extracted_data: dictionary with all extracted data
     :return: None
-    """
+    '''
     print('=' * 50)
     print('🛡️ DATA SHIELD OPERATION REPORT 🛡️')
     print('=' * 50)
@@ -195,14 +197,14 @@ def print_secrets_data(extracted_data):
 
     if secrets_data['API-keys']:
         print('-' * 50)
-        print(f'🔑 API KEYS ({len(secrets_data["API-keys"])} pieces):')
+        print(f'🔑 API KEYS ({len(secrets_data['API-keys'])} pieces):')
         print('-' * 50)
         for key in secrets_data['API-keys']:
             print(f'{key}')
 
     if secrets_data['passwords']:
         print('-' * 50)
-        print(f'🔐 PASSWORDS ({len(secrets_data["passwords"])} pieces):')
+        print(f'🔐 PASSWORDS ({len(secrets_data['passwords'])} pieces):')
         print('-' * 50)
         for pwd in secrets_data['passwords']:
             print(f'{pwd}')
@@ -219,7 +221,8 @@ def generate_comprehensive_report(leaked_data):
     :param leaked_data: raw text to analyze for information
     :return: dictionary containing all extracted and validated data
     '''
-    extracted_data = {'financial_data': find_and_validate_credit_cards(leaked_data), 'secrets_data': find_secrets(leaked_data)}
+    extracted_data = {'financial_data': find_and_validate_credit_cards(leaked_data),
+                      'secrets_data': find_secrets(leaked_data)}
     return extracted_data
 
 
