@@ -124,15 +124,15 @@ def find_secrets(text):
 
     passwords = re.findall(r'(?=.*[!_#@$%^&*])(?=.*\d)[A-Za-z0-9_!#@$%^&*]{8,}', text)
 
-    for pwd in passwords:
+    for password in passwords:
         is_api = False
         for api in api_keys:
-            if pwd == api or api in pwd or pwd in api:
+            if password == api or api in password or passwordd in api:
                 is_api = True
                 break
         if not is_api:
-            secrets['passwords'].append(pwd)
-            all_secrets.append(f'password: {pwd}')
+            secrets['passwords'].append(password)
+            all_secrets.append(f'password: {password}')
 
     no_repeats = []
     seen = set()
