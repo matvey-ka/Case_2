@@ -127,7 +127,7 @@ def find_secrets(text):
     for password in passwords:
         is_api = False
         for api in api_keys:
-            if password == api or api in password or passwordd in api:
+            if password == api or api in password or password in api:
                 is_api = True
                 break
         if not is_api:
@@ -169,15 +169,15 @@ def save_secrets_data(extracted_data, filename='our_result.txt'):
             f.write('-' * 50 + '\n')
             f.write(f'🔐 PASSWORDS ({len(secrets_data['passwords'])} pieces):\n')
             f.write('-' * 50 + '\n')
-            for pwd in secrets_data['passwords']:
-                f.write(f'{pwd}\n')
+            for password in secrets_data['passwords']:
+                f.write(f'{password}\n')
 
     with open(filename, 'a', encoding='utf-8') as f:
         secrets_data = extracted_data['secrets_data']['organized']
         for key in secrets_data['API-keys']:
             f.write(f'{key}\n')
-        for pwd in secrets_data['passwords']:
-            f.write(f'{pwd}\n')
+        for password in secrets_data['passwords']:
+            f.write(f'{password}\n')
 
 
 def print_secrets_data(extracted_data):
@@ -206,8 +206,8 @@ def print_secrets_data(extracted_data):
         print('-' * 50)
         print(f'🔐 PASSWORDS ({len(secrets_data['passwords'])} pieces):')
         print('-' * 50)
-        for pwd in secrets_data['passwords']:
-            print(f'{pwd}')
+        for password in secrets_data['passwords']:
+            print(f'{password}')
 
 
 ##### END OF SECRETS HUNTER'S CODE #####
