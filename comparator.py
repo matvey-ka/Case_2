@@ -1,9 +1,19 @@
+# Case-study #2
+# Developers: Popov M., Kartashov A.
+#
+
+
 OUR_RESULT_FILE = 'our_result.txt'
 MAX_GROUP_NUMBER = 12
 SAVE_REPORT_TO = 'comparison_report.txt'
 
 
 def extract_artifacts(file_path):
+    '''
+    Function extracting artifacts from a file
+    :param file_path: path to file
+    :return: tuple containing list and set of artifacts
+    '''
     artifacts_ordered = []
     seen = set()
     with open(file_path, 'r', encoding='utf-8') as f:
