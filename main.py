@@ -151,6 +151,7 @@ def save_secrets_data(extracted_data, filename='our_result.txt'):
     :param filename: output file name
     :return: None
     '''
+    '''
     with open(filename, 'a', encoding='utf-8') as f:
         f.write('#' * 50 + '\n')
         f.write('🔑🔐🎫 SECRETS DATA 🔑🔐🎫\n')
@@ -171,7 +172,7 @@ def save_secrets_data(extracted_data, filename='our_result.txt'):
             f.write('-' * 50 + '\n')
             for password in secrets_data['passwords']:
                 f.write(f'{password}\n')
-
+    '''
     with open(filename, 'a', encoding='utf-8') as f:
         secrets_data = extracted_data['secrets_data']['organized']
         for key in secrets_data['API-keys']:
